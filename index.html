@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To‑Do — Minimal & Fast</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#0ea5e9" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>To‑Do</h1>
+      <div class="actions">
+        <input id="search" type="search" placeholder="Search tasks…" aria-label="Search tasks" />
+        <select id="filter" aria-label="Filter tasks">
+          <option value="all">All</option>
+          <option value="active">Active</option>
+          <option value="completed">Completed</option>
+          <option value="today">Due Today</option>
+        </select>
+        <button id="clearCompleted" title="Clear completed">Clear ✓</button>
+      </div>
+    </header>
+
+    <section class="composer">
+      <input id="newTitle" type="text" placeholder="What needs to be done?" aria-label="Task title" />
+      <input id="newDue" type="date" aria-label="Due date" />
+      <button id="addBtn" class="primary">Add</button>
+    </section>
+
+    <section class="summary" aria-live="polite">
+      <span id="count">0</span> task(s) • <span id="activeCount">0</span> active
+    </section>
+
+    <ul id="list" class="list" aria-label="To‑Do List"></ul>
+
+    <footer class="footer">
+      <button id="exportBtn" title="Export tasks as JSON">Export</button>
+      <input id="importFile" type="file" accept="application/json" hidden />
+      <button id="importBtn" title="Import tasks from JSON">Import</button>
+      <button id="resetBtn" title="Reset all data">Reset</button>
+    </footer>
+  </div>
+
+  <template id="itemTemplate">
+    <li class="item" draggable="true">
+      <label class="checkbox">
+        <input type="checkbox" class="toggle" />
+        <span class="checkmark" aria-hidden="true"></span>
+      </label>
+      <div class="content">
+        <input class="title" />
+        <div class="meta">
+          <input type="date" class="due" />
+          <span class="badge overdue" hidden>Overdue</span>
+          <span class="badge today" hidden>Today</span>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="dup" title="Duplicate">⎘</button>
+        <button class="del" title="Delete">✕</button>
+      </div>
+    </li>
+  </template>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
